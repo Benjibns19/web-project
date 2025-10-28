@@ -1,0 +1,76 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue.js Felines Demo</title>
+    <link rel="stylesheet" href="./css/style.css" />
+    <script defer src="https://cdn.jsdelivr.net/npm/vue@3/dist/vue.global.prod.js"></script>
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>web project</h1>
+        <h2>Felines fact Application</h2>
+      </header>
+
+      <nav class="main-nav">
+        <ul>
+          <li><a href="#">Home</a></li>
+        </ul>
+      </nav>
+
+      <main id="app" class="main-content" v-cloak>
+        <h1 v-text="mainHeading"></h1>
+
+        <section class="card" @click="isFlipped = !isFlipped">
+          <figure class="media">
+            <img
+              :src="felines[index].img"
+              :alt="felines[index].title + ' photo'"
+              :key="index"
+              @error="onImgError"
+            />
+          </figure>
+
+          <div class="content">
+            <h2 v-text="isFlipped ? '' : felines[index].title"></h2>
+            <p v-text="isFlipped ? felines[index].desc : ''"></p>
+
+            <p class="learn">
+              Learn more on
+              <a :href="felines[index].link" target="_blank" rel="noopener">Wikipedia</a>
+            </p>
+          </div>
+        </section>
+
+        <div class="buttons">
+          <button type="button" @click.stop="move(-1)" :disabled="index === 0">Previous</button>
+          <span class="counter">{{ index + 1 }} / {{ felines.length }}</span>
+          <button type="button" @click.stop="move(1)" :disabled="index === felines.length - 1">Next</button>
+        </div>
+
+        <div class="tip">
+          <strong>Tip:</strong> Click the card to toggle <em>Title ⇄ Description</em>.
+        </div>
+      </main>
+
+      
+      <footer>&copy; <span id="year"></span> - Vue.js Felines Demo</footer>
+    </div>
+
+    <!-- ordre : data -> app -->
+    <script defer src="./data/felines.js"></script>
+    <script defer src="./js/app.js"></script>
+
+    <noscript>
+      <style>[v-cloak]{display:block}</style>
+      <div style="padding:1rem;color:#b91c1c">Activez JavaScript pour voir la galerie.</div>
+    </noscript>
+
+    <script>
+      document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>
