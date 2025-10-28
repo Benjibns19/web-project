@@ -56,8 +56,8 @@ header h2 { margin: 0; font-weight: 500; opacity: .95; }
 .media { margin: 0; }
 .media img {
   display: block;
-  width: 100%;
-  height: 280px;
+  width: 900px;
+  height: 600px;
   object-fit: cover;
   border-radius: .75rem;
 }
